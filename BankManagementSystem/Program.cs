@@ -6,7 +6,7 @@ namespace BankManagementSystem
     public class Program
     {
          private static int choice;
-         public static Hashtable CustomerTable = new Hashtable();
+         public Hashtable CustomerTable = new Hashtable();
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -30,15 +30,9 @@ namespace BankManagementSystem
             do
             {
                 DisplayOptions();
-                Customer customerObj= new Customer();
                 switch (choice)
                 {
-                    case 2: Console.Write("Enter the account number: ");
-                        long accountNumber=Convert.ToInt32(Console.ReadLine());
-                        Console.Write("Enter the amount to deposit: ");
-                        double amount=Convert.ToDouble(Console.ReadLine());
-                        customerObj.AccountDetails.Deposit(accountNumber, amount);
-                        break;
+                    
                 }
 
             } while (choice != 8);

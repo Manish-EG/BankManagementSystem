@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BankManagementSystem
 {
     interface IAccountOperation
     {
-        void Deposit(long accountNumber, double amount);
+        void Deposit();
         void Withdraw();
         void CheckBalance();
         void MoneyTransfer();
@@ -25,20 +29,9 @@ namespace BankManagementSystem
             Branch =new BankBranch(branch);
         }
 
-        public void Deposit(long accountNumber,double amount)
+        public void Deposit()
         {
-            if (!Program.CustomerTable.ContainsKey(accountNumber))
-            {
-                Console.WriteLine("Invalid account number");
-                return;
-            }
-            if (amount <= 0) {
-                Console.WriteLine("Amount needs to be greater than zero");
-                return;
-            }
-                Customer customerObj = (Customer)Program.CustomerTable[accountNumber];
-                customerObj.AccountDetails.Balance = amount;
-                Console.WriteLine("Amount has been credited to your account");
+
         }
 
         public void Withdraw()

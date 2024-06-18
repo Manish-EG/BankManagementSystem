@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BankManagementSystem
 {
@@ -35,16 +40,6 @@ namespace BankManagementSystem
         {
 
         }
-        public static bool CustomerValidate(long accountNumber,string password) {
 
-            if (!Program.CustomerTable.ContainsKey(accountNumber)) return false;
-            if (password == "") return false;
-
-            Customer customerObj = (Customer)Program.CustomerTable[accountNumber];
-
-            if (customerObj.Password != password) return false;
-
-            return true;
-        }
      }
 }
