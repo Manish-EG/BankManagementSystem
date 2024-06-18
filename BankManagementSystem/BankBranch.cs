@@ -25,7 +25,7 @@ namespace BankManagementSystem
             BranchName = branchName;
             List<string> retrievedList = IFSCCodeList[branchName] as List<string>;
             IFSCCode = retrievedList?[0];
-            branchAddress=new Address(retrievedList?[1], retrievedList[2], retrievedList?[3], retrievedList?[4]);
+            branchAddress=new Address(retrievedList?[1], int.Parse(retrievedList?[2]), retrievedList?[3], retrievedList?[4]);
             
         }
         
