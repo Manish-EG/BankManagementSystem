@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace BankManagementSystem
 {
-    public class Customer
+    interface ICustomerOperation
+    {
+        void CreateAccount();
+        void ViewDetails();
+        void EditDetails();
+    }
+
+    public class Customer : ICustomerOperation
     {
         public string CustomerName { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -24,7 +31,21 @@ namespace BankManagementSystem
             AccountDetails = details;
             Email = email;
             Password = password;
+
         
         }
+        public void CreateAccount()
+        {
+
+        }
+        public void EditDetails()
+        {
+
+        }
+        public void ViewDetails()
+        {
+
+        }
+
      }
 }
