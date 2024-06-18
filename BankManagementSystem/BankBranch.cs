@@ -19,7 +19,7 @@ namespace BankManagementSystem
             {"Kapikad",new List<String>{ "EGIND0005780","AjanthaBusiness","577101","Manglore","India" } }
         };
         public readonly string IFSCCode;
-        Address branchAddress;
+        public Address branchAddress;
         public BankBranch(string branchName)
         {
             BranchName = branchName;
@@ -31,6 +31,6 @@ namespace BankManagementSystem
         
 
 
-        }
+        
     }
 }
