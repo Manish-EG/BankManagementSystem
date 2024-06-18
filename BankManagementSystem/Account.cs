@@ -17,7 +17,7 @@ namespace BankManagementSystem
     public class Account : IAccountOperation
     {
         public string AccountType { get; set; }
-        public int AccountNumber{get; set; }
+        public long AccountNumber{get; set; }
         public double Balance{ get; set; }
         public DateTime DateOfCreation { get; set; }
         public BankBranch Branch {  get; set; }
