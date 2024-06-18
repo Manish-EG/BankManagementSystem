@@ -26,7 +26,6 @@ namespace BankManagementSystem
                 }
 
             } while (choice != 8);
-
         }
     }
 }
