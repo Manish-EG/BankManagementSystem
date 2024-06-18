@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 namespace BankManagementSystem.Model
 {
     public  class BankBranchModel
     {
 
-        public string BranchName { get;set }
+        public string BranchName { get; set; }
 
 
         public Hashtable IFSCCodeList = new Hashtable()
@@ -26,5 +26,4 @@ namespace BankManagementSystem.Model
         }
 
     }
-}
 }
