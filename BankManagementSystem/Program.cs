@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 
 namespace BankManagementSystem
 {
     public class Program
     {
          private static int choice;
+         public Hashtable CustomerTable = new Hashtable();
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Green;
