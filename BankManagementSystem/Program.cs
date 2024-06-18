@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using BankManagementSystem.Controller;
 
 namespace BankManagementSystem
 {
@@ -30,7 +31,9 @@ namespace BankManagementSystem
             do
             {
                 DisplayOptions();
-                Customer customerObj = new Customer();
+                AccountController accountControllerObj = new AccountController();
+
+
                 switch (choice)
                 {
                     case 2:
@@ -38,7 +41,7 @@ namespace BankManagementSystem
                         long accountNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Write("Enter the amount to deposit: ");
                         double amount = Convert.ToDouble(Console.ReadLine());
-                        customerObj.AccountDetails.Deposit(accountNumber, amount);
+                        accountControllerObj.Deposit(accountNumber, amount);
                         break;
                 }
 
