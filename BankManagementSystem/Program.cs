@@ -24,7 +24,7 @@ namespace BankManagementSystem
                 DisplayOptions();
                 switch (choice)
                 {
-                    
+                   
                 }
 
             } while (choice != 8);
