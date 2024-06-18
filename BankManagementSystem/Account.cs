@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace BankManagementSystem
 {
-    public class Account
+    interface IAccountOperation
+    {
+        void Deposit();
+        void Withdraw();
+        void CheckBalance();
+        void MoneyTransfer();
+        void ApplyAtmCard();
+    }
+    public class Account : IAccountOperation
     {
         public string AccountType { get; set; }
         public int AccountNumber{get; set; }
@@ -20,6 +28,31 @@ namespace BankManagementSystem
             Balance = balance;
             DateOfCreation=Convert.ToDateTime(date);
             Branch = branch;
+        }
+
+        public void Deposit()
+        {
+
+        }
+
+        public void Withdraw()
+        {
+
+        }
+
+        public void CheckBalance()
+        {
+
+        }
+
+        public void MoneyTransfer()
+        {
+
+        }
+
+        public void ApplyAtmCard()
+        {
+
         }
     }
 }
