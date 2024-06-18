@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace BankManagementSystem
         public Account AccountDetails { get; set; }
         private string Email {  get; set; }
         private string Password { get; set; }
+        Hashtable CustomerTable= new Hashtable();
 
         public Customer(string name,string date,List<Address> address,long number,Account details,string email,string password) {
             CustomerName = name;
