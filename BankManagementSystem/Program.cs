@@ -24,7 +24,7 @@ namespace BankManagementSystem
             Console.WriteLine("9. Exit");
             Console.WriteLine("----------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Enter your choice:");
+            Console.Write("Enter your choice: ");
             choice = Convert.ToInt32(Console.ReadLine());
         }
         static void Main(string[] args)
