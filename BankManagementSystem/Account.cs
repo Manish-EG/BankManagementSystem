@@ -10,7 +10,7 @@ namespace BankManagementSystem
     {
         void Deposit();
         void Withdraw();
-        void CheckBalance();
+        void CheckBalance(long accountNumber);
         void MoneyTransfer();
         void ApplyAtmCard();
     }
@@ -39,8 +39,11 @@ namespace BankManagementSystem
 
         }
 
-        public void CheckBalance()
+        public void CheckBalance(long accountNumber)
         {
+            Program program = new Program();
+            Customer customer = (Customer)program.CustomerTable[accountNumber];
+            Console.WriteLine($"Your current balance is {customer.AccountDetails.Balance}");
 
         }
 

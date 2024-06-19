@@ -20,6 +20,8 @@ namespace BankManagementSystem
         };
         public readonly string IFSCCode;
         Address branchAddress;
+
+        public BankBranch(){ }
         public BankBranch(string branchName)
         {
             BranchName = branchName;
@@ -31,6 +33,6 @@ namespace BankManagementSystem
         
 
 
-        }
+        
     }
 }
