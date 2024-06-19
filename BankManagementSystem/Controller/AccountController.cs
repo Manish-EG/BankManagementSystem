@@ -23,7 +23,7 @@ namespace BankManagementSystem.Controller
                 return;
             }
             CustomerModel customerModelObj = (CustomerModel)Program.CustomerTable[accountNumber];
-            customerModelObj.AccountDetails.Balance = amount;
+            customerModelObj.AccountDetails.Balance += amount;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Amount has been credited to account");
             Console.ForegroundColor = ConsoleColor.White;
