@@ -140,7 +140,12 @@ namespace BankManagementSystem
                          password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
                         amount = Convert.ToDouble(Console.ReadLine());
-                        accountControllerObj.Withdraw(accountNumber, password, amount);
+                        if (customerObject.AccountDetails.Balance <= amount)
+                            accountControllerObj.Withdraw(accountNumber, password, amount);
+                        else
+                        {
+                            Console.WriteLine($"Please enter the amount less than  the balance amount {customerObject.AccountDetails.Balance}");
+                        }
                         break;
 
                     case 4:
