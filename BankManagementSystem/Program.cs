@@ -139,7 +139,7 @@ namespace BankManagementSystem
                         Console.WriteLine("Enter the password");
                         string password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
-                        amount = Convert.ToInt32(Console.ReadLine());
+                        amount = Convert.ToDouble(Console.ReadLine());
                         accountControllerObj.Withdraw(accountNumber, password, amount);
                         break;
 
