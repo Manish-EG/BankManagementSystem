@@ -1,6 +1,7 @@
 ﻿using BankManagementSystem.Interface;
 using BankManagementSystem.Model;
 using System;
+using System.Reflection;
 namespace BankManagementSystem.Controller
 {
     public class AccountController:IAccount
@@ -34,8 +35,8 @@ namespace BankManagementSystem.Controller
 
         public void MoneyTransfer()
         {
-            CustomerModel customer;
-            string password;
+            CustomerModel senderCustomer,recipientCustomer;
+            string password,IFSCCode;
             long senderAccountNumber, recipientAccountNumber;
             Console.WriteLine("Enter your account number:");
             senderAccountNumber = Convert.ToInt64(Console.ReadLine());
@@ -43,12 +44,32 @@ namespace BankManagementSystem.Controller
             password = Console.ReadLine();
             Console.WriteLine("Enter your recipient's account number:");
             recipientAccountNumber = Convert.ToInt64(Console.ReadLine());
-            
-            if (CustomerController.CustomerValidate(senderAccountNumber,password) && Program.CustomerTable.ContainsKey(recipientAccountNumber))
+            Console.WriteLine("Enter your recipient's account number:");
+            IFSCCode = Console.ReadLine();
+            senderCustomer = (CustomerModel)Program.CustomerTable[senderAccountNumber];
+            recipientCustomer = (CustomerModel)Program.CustomerTable[recipientAccountNumber];
+            if (CustomerController.CustomerValidate(senderAccountNumber,password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.branchModel.IFSCCode==IFSCCode )
             {
-                int amount;
+                
+                double amount;
                 Console.WriteLine("Enter the ammount");
-                Program.CustomerTable.ContainsKey(senderAccountNumber);
+                amount=Convert.ToDouble(Console.ReadLine());
+                
+                if (senderCustomer.AccountDetails.Balance > amount )
+                {
+                    Deposit(senderAccountNumber, amount);
+                    Withdraw(senderAccountNumber,amount);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Amount Transfered to recipients account successfully!");
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Transaction Declined! Insufficient Balance.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
             else
             {
@@ -64,15 +85,21 @@ namespace BankManagementSystem.Controller
         {
 
             int choice;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Enter your choice\n1.Debit Card\n2.Credit Card");
-            choice=Convert.ToInt32(Console.ReadLine());
+            Console.ForegroundColor = ConsoleColor.White;
+            choice =Convert.ToInt32(Console.ReadLine());
             switch (choice) {
                 case 1:
                 case 2:
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You will get your Credit/Debit card within 15 buisness days,Thank you.");
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     break;
                 default:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid choice!!");
+                    Console.ForegroundColor = ConsoleColor.White;
                     break ;
             }
 
