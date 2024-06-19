@@ -1,6 +1,6 @@
 ﻿namespace BankManagementSystem.Model
 {
-    public class AddressModel
+    public sealed class AddressModel
     {
         public string LocationAddress { get; set; }
         public int PinCode { get; set; }

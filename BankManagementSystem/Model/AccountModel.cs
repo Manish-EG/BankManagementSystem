@@ -2,7 +2,7 @@
 
 namespace BankManagementSystem.Model
 {
-    public class AccountModel
+    public sealed class AccountModel
     {
         public string AccountType { get; set; }
         public long AccountNumber { get; set; }

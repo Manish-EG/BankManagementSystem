@@ -3,7 +3,7 @@ using BankManagementSystem.Model;
 using System;
 namespace BankManagementSystem.Controller
 {
-    public class AccountController:IAccount
+    public sealed class AccountController:IAccount
     {
         public void Deposit(long accountNumber, double amount)
         {

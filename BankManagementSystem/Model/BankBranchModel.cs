@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BankManagementSystem.Model
 {
-    public  class BankBranchModel
+    public sealed  class BankBranchModel
     {
 
         public string BranchName { get; set; }
