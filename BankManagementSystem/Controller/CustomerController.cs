@@ -97,7 +97,7 @@ namespace BankManagementSystem.Controller
             CustomerModel customer;
             
                 customer = (CustomerModel)Program.CustomerTable[accountNumber];
-                Console.WriteLine("---------------EG BANK---------------");
+                Console.WriteLine($"---------------{BankModel.BankName}---------------");
                 Console.WriteLine("Customer name: " + customer.CustomerName);
                 Console.WriteLine("Customer DOB: " + customer.DateOfBirth);
             //AddressModel address = customer.CustomerAddress;

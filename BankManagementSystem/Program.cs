@@ -1,4 +1,5 @@
 ﻿using BankManagementSystem.Controller;
+using BankManagementSystem.Interface;
 using BankManagementSystem.Model;
 using System;
 using System.Collections;
@@ -12,7 +13,12 @@ namespace BankManagementSystem
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("----------------------------------------");
+            Console.Write($"---------------");
+            Console.ForegroundColor= ConsoleColor.DarkMagenta;
+            Console.Write(BankModel.BankName);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"---------------");
+            Console.WriteLine();
             Console.WriteLine("1. Create account");
             Console.WriteLine("2. Deposit amount");
             Console.WriteLine("3. Withdraw amount");
@@ -33,7 +39,6 @@ namespace BankManagementSystem
             {
                 DisplayOptions();
                 AccountController accountControllerObj = new AccountController();
-                AddressModel addressObject;
                 CustomerModel customerObject = new CustomerModel();
                 CustomerController customerControllerObj = new CustomerController();
                 long accountNumber, recipientAccountNumber;
