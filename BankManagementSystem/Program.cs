@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Net;
 using BankManagementSystem.Controller;
+using BankManagementSystem.Model;
 
 namespace BankManagementSystem
 {
@@ -32,18 +34,21 @@ namespace BankManagementSystem
             {
                 DisplayOptions();
                 AccountController accountControllerObj = new AccountController();
-                Account accountObject;
-                Address addressObject;
-                BankBranch branchObject;
+                AccountModel accountObject;
+                AddressModel addressObject;
+                CustomerModel customerObject=new CustomerModel();
+                CustomerController customerControllerObj = new CustomerController();
+                long accountNumber;
+                string password;
                 switch (choice)
                 {
                     case 1:
                         Console.Write("Enter your name: ");
-                        string customerName = Console.ReadLine();
+                        customerObject.CustomerName = Console.ReadLine();
                         Console.Write("Enter your date of birth: ");
-                        DateTime dateOfBirth = Convert.ToDateTime(Console.ReadLine());
+                        customerObject.DateOfBirth = Convert.ToDateTime(Console.ReadLine());
                         Console.Write("Enter your location: ");
-                        string address = Console.ReadLine();
+                        string location = Console.ReadLine();
                         Console.Write("Enter your pincode: ");
                         int pincode = Convert.ToInt32(Console.ReadLine());
                         Console.Write("Enter your city: ");
@@ -51,14 +56,14 @@ namespace BankManagementSystem
                         Console.Write("Enter your country: ");
                         string country = Console.ReadLine();
 
-                        addressObject = new Address(address, pincode, city, country);
+                        addressObject = new AddressModel(location, pincode, city, country);
 
                         Console.Write("Enter your phone number: ");
-                        long phoneNumber = Convert.ToInt64(Console.ReadLine());
+                        customerObject.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                         Console.Write("Enter your email: ");
-                        string email = Console.ReadLine();
+                        customerObject.Email = Console.ReadLine();
                         Console.Write("Enter your password: ");
-                        string password = Console.ReadLine();
+                        customerObject.Password = Console.ReadLine();
 
                         string accountType = "";
                         bool typeSelected;
@@ -85,13 +90,13 @@ namespace BankManagementSystem
                             }
                         } while (!typeSelected);
 
-                        branchObject = new BankBranch();
+                        //branchObject = new BankBranch();
                         string branchName = "";
                         bool branchSelected = false;
                         do
                         {
                             Console.WriteLine("\nOur branches: ");
-                            foreach (string branch in branchObject.IFSCCodeList.Keys)
+                            foreach (string branch in BankBranchModel.IFSCCodeList.Keys)
                             {
                                 Console.WriteLine($"* {branch}");
                             }
@@ -100,7 +105,7 @@ namespace BankManagementSystem
                             string selectedBranch = Console.ReadLine();
                             int count = 0;
                         
-                            foreach (string branch in branchObject.IFSCCodeList.Keys)
+                            foreach (string branch in BankBranchModel.IFSCCodeList.Keys)
                             {
                                 count++;
                                 if (selectedBranch.Equals(branch))
@@ -109,7 +114,7 @@ namespace BankManagementSystem
                                     branchSelected = true;
                                     break;
                                 }
-                                int elementCount = branchObject.IFSCCodeList.Count;
+                                int elementCount = BankBranchModel.IFSCCodeList.Count;
                                 if (elementCount == count)
                                 {
                                     branchSelected = false;
@@ -118,15 +123,12 @@ namespace BankManagementSystem
                             }
                         }while (!branchSelected);
 
-                        accountObject = new Account(accountType, branchName);
-
-                        Customer customer = new Customer(customerName, dateOfBirth, addressObject, phoneNumber, 
-                            accountObject, email, password);
-                        customer.CreateAccount(customer);
+                        customerObject.AccountDetails = new AccountModel(accountType, branchName);
+                        customerControllerObj.CreateAccount(customerObject);
                         break;
                     case 2:
                         Console.Write("Enter the account number: ");
-                        long accountNumber = Convert.ToInt32(Console.ReadLine());
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.Write("Enter the amount to deposit: ");
                         double amount = Convert.ToDouble(Console.ReadLine());
                         accountControllerObj.Deposit(accountNumber, amount);
@@ -134,17 +136,19 @@ namespace BankManagementSystem
 
                     case 4:
                         Console.Write("Enter your account number: ");
-                        int accountNumber = Convert.ToInt32(Console.ReadLine());
-                        Program program = new Program();
-                        if(program.CustomerTable.ContainsKey(accountNumber))
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
+                        Console.Write("Enter your password: ");
+                        password = Console.ReadLine();
+                        if (CustomerController.CustomerValidate(accountNumber, password))
                         {
-                            customer = (Customer)program.CustomerTable[accountNumber];
-                            accountObject = (Account)customer.AccountDetails;
-                            accountObject.CheckBalance(accountNumber);
+                            accountControllerObj.CheckBalance(accountNumber, password);
+
                         }
                         else
                         {
-                            Console.WriteLine("\nAccount number doesnot exist!!");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nInvalid account number or password!!");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                         break;
                    
