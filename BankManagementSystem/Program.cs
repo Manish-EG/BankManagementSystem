@@ -10,14 +10,17 @@ namespace BankManagementSystem
     {
         private static int choice;
         public static Hashtable CustomerTable = new Hashtable();
-        static void DisplayOptions()
-        {
+        public static void DisplayBankName() {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"---------------");
-            Console.ForegroundColor= ConsoleColor.DarkMagenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write(BankModel.BankName);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"---------------");
+        }
+        static void DisplayOptions()
+        {
+            DisplayBankName();
             Console.WriteLine();
             Console.WriteLine("1. Create account");
             Console.WriteLine("2. Deposit amount");
@@ -172,16 +175,18 @@ namespace BankManagementSystem
                             Console.WriteLine("Enter the amount to withdraw");
                             amount = Convert.ToDouble(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.White;
-                            accountControllerObj.Withdraw(accountNumber, password, amount);
-
+                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            {
+                                accountControllerObj.Withdraw(accountNumber, password, amount);
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nInvalid account number or password!!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
                         }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("\nInvalid account number or password!!");
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                         catch (Exception e)
+                        catch (Exception e)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine($"Execption found: {e.Message}");
