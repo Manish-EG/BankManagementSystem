@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 namespace BankManagementSystem.Controller
 {
-    public class AccountController:IAccount
+    public sealed class AccountController:IAccount
     {
         public void Deposit(long accountNumber, double amount)
         {
@@ -20,20 +20,31 @@ namespace BankManagementSystem.Controller
             }
             CustomerModel customerModelObj = (CustomerModel)Program.CustomerTable[accountNumber];
             customerModelObj.AccountDetails.Balance = amount;
-            Console.WriteLine("Amount has been credited to your account");
+            Console.WriteLine("Amount has been credited to account");
         }
 
-        public void Withdraw()
+        public void Withdraw(long accountNumber, string password, double amount)
         {
+            if (CustomerController.CustomerValidate(accountNumber, password))
+            {
 
+                CustomerModel customerObject = (CustomerModel)Program.CustomerTable[accountNumber];
+                customerObject.AccountDetails.Balance -= amount;
+                Console.WriteLine("Withdraw Succesfull");
+
+            }
+            else
+                Console.WriteLine("Withdraw unsuccesfull due wrong credentials");
         }
 
-        public void CheckBalance()
+        public void CheckBalance(long accountNumber,string password)
         {
+            CustomerModel customer = (CustomerModel)Program.CustomerTable[accountNumber];
+            Console.WriteLine($"\nYour current balance is {customer.AccountDetails.Balance} rupees");
 
         }
 
-        public void MoneyTransfer()
+        public void MoneyTransfer(long senderAccountNumber,long recipientAccountNumber, string password,string IFSCCode)
         {
             CustomerModel senderCustomer,recipientCustomer;
             string password,IFSCCode;
