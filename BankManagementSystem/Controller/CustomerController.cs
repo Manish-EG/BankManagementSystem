@@ -8,10 +8,10 @@ namespace BankManagementSystem.Controller
     {
         public void CreateAccount(CustomerModel customer)
         {
-
-            Program.CustomerTable.Add(customer.AccountDetails.AccountNumber, customer);
+            AccountModel.AccountNumber++;
+            Program.CustomerTable.Add(AccountModel.AccountNumber, customer);
             Console.WriteLine("\nAccount created successfully!!");
-            Console.WriteLine($"\nYour account number is {customer.AccountDetails.AccountNumber}");
+            Console.WriteLine($"\nYour account number is {AccountModel.AccountNumber}");
         }
         public void EditDetails()
         {
