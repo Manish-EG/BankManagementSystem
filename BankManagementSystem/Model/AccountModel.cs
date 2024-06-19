@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace BankManagementSystem.Model
 {
-    public class AccountModel
+    public sealed class AccountModel
     {
         public string AccountType { get; set; }
         private static long _accountNumber = 110000; 
