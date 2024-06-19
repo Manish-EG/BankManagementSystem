@@ -6,9 +6,11 @@ namespace BankManagementSystem.Controller
 {
     public class CustomerController: ICustomer
     {
-        public void CreateAccount()
+        public void CreateAccount(CustomerModel customer)
         {
 
+            Program.CustomerTable.Add(customer.AccountDetails.AccountNumber, customer);
+            Console.WriteLine("\nAccount created successfully!!");
 
 
         }
@@ -70,7 +72,7 @@ namespace BankManagementSystem.Controller
         }
         public void ViewDetails(long accountNumber)
         {
-            
+
             CustomerModel customer;
             
                 customer = (CustomerModel)Program.CustomerTable[accountNumber];
