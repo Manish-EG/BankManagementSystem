@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using BankManagementSystem.Controller;
 
 namespace BankManagementSystem
 {
     public class Program
     {
-         private static int choice;
-         public Hashtable CustomerTable = new Hashtable();
+        private static int choice;
+        public static Hashtable CustomerTable = new Hashtable();
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -30,9 +31,18 @@ namespace BankManagementSystem
             do
             {
                 DisplayOptions();
+                AccountController accountControllerObj = new AccountController();
+
+
                 switch (choice)
                 {
-                    
+                    case 2:
+                        Console.Write("Enter the account number: ");
+                        long accountNumber = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter the amount to deposit: ");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+                        accountControllerObj.Deposit(accountNumber, amount);
+                        break;
                 }
 
             } while (choice != 8);
