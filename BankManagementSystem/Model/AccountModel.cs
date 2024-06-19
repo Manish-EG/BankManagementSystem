@@ -6,7 +6,7 @@ namespace BankManagementSystem.Model
     public class AccountModel
     {
         public string AccountType { get; set; }
-        private static long _accountNumber = 110000; 
+        public readonly long AccountNumber = 110000; 
         public double Balance { get; set; }
         public DateTime DateOfCreation { get; set; }
         public BankBranchModel branchModel { get; set; }
@@ -17,10 +17,11 @@ namespace BankManagementSystem.Model
             Balance = 0;
             DateOfCreation = System.DateTime.Now;
             branchModel = new BankBranchModel(branch);
+            AccountNumber++;
         }
-        public static long AccountNumber
+        /*public static long AccountNumber
         {
             get { return ++_accountNumber; }
-        }
+        }*/
     }
 }

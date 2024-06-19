@@ -11,7 +11,7 @@ namespace BankManagementSystem.Controller
 
             Program.CustomerTable.Add(customer.AccountDetails.AccountNumber, customer);
             Console.WriteLine("\nAccount created successfully!!");
-
+            Console.WriteLine($"\nYour account number is {customer.AccountDetails.AccountNumber}");
         }
         public void EditDetails()
         {

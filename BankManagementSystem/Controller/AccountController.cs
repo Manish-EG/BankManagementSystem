@@ -39,7 +39,7 @@ namespace BankManagementSystem.Controller
         public void CheckBalance(long accountNumber,string password)
         {
             CustomerModel customer = (CustomerModel)Program.CustomerTable[accountNumber];
-            Console.WriteLine($"Your current balance is {customer.AccountDetails.Balance}");
+            Console.WriteLine($"\nYour current balance is {customer.AccountDetails.Balance} rupees");
 
         }
 

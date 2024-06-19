@@ -25,7 +25,7 @@ namespace BankManagementSystem
             Console.WriteLine("9. Exit");
             Console.WriteLine("----------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Enter your choice:");
+            Console.Write("Enter your choice: ");
             choice = Convert.ToInt32(Console.ReadLine());
         }
         static void Main(string[] args)
@@ -126,7 +126,7 @@ namespace BankManagementSystem
                         customerObject.AccountDetails = new AccountModel(accountType, branchName);
                         customerControllerObj.CreateAccount(customerObject);
                         break;
-                    case 2:
+                    /*case 2:
                         Console.Write("Enter the account number: ");
                         accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.Write("Enter the amount to deposit: ");
@@ -142,7 +142,7 @@ namespace BankManagementSystem
                         Console.WriteLine("Enter the amount to withdraw");
                         int amount = Convert.ToInt32(Console.ReadLine());
                         accountController.Withdraw(accountNumber, password, amount);
-                        break;
+                        break;*/
 
                     case 4:
                         Console.Write("Enter your account number: ");
