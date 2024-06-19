@@ -3,7 +3,7 @@
     public interface ICustomer
     {
         void CreateAccount();
-        void ViewDetails();
-        void EditDetails();
+        void ViewDetails(long accountNumber);
+        void EditDetails(long accountNumber);
     }
 }

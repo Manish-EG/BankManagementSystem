@@ -48,7 +48,7 @@
     <Compile Include="Interface\IAccount.cs" />
     <Compile Include="Interface\ICustomer.cs" />
     <Compile Include="Model\AccountModel.cs" />
-    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\AddressModel.cs" />
     <Compile Include="Model\BankBranchModel.cs" />
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\CustomerModel.cs" />

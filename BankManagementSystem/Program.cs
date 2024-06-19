@@ -32,7 +32,7 @@ namespace BankManagementSystem
             {
                 DisplayOptions();
                 AccountController accountControllerObj = new AccountController();
-
+                
 
                 switch (choice)
                 {
@@ -42,6 +42,42 @@ namespace BankManagementSystem
                         Console.Write("Enter the amount to deposit: ");
                         double amount = Convert.ToDouble(Console.ReadLine());
                         accountControllerObj.Deposit(accountNumber, amount);
+                        break;
+                    case 6:
+                        Console.WriteLine("Enter your account number:");
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("Enter your password:");
+                        string password= Console.ReadLine();
+                        CustomerController customerControllerObj = new CustomerController();
+                        if (CustomerController.CustomerValidate(accountNumber, password))
+                        {
+                            customerControllerObj.ViewDetails(accountNumber);
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Invalid account number or password!!");
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                        }
+                        break;
+                    case 7:
+                        Console.WriteLine("Enter your account number:");
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("Enter your password:");
+                        password = Console.ReadLine();
+                        if (CustomerController.CustomerValidate(accountNumber, password))
+                        {
+                            CustomerController customerController = new CustomerController();
+                            customerController.EditDetails(accountNumber);
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Invalid account number or password!!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+
                         break;
                 }
 
