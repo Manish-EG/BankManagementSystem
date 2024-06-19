@@ -136,12 +136,12 @@ namespace BankManagementSystem
 
                     case 3:
                         Console.WriteLine("Enter your account number");
-                        long accountNumber = Convert.ToInt64(Console.ReadLine());
+                         accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter the password");
-                        string password = Console.ReadLine();
+                         password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
-                        int amount = Convert.ToInt32(Console.ReadLine());
-                        accountController.Withdraw(accountNumber, password, amount);
+                        amount = Convert.ToInt32(Console.ReadLine());
+                        accountControllerObj.Withdraw(accountNumber, password, amount);
                         break;
 
                     case 4:
