@@ -7,8 +7,8 @@ namespace BankManagementSystem
 {
     public class Program
     {
-         private static int choice;
-         public static Hashtable CustomerTable = new Hashtable();
+        private static int choice;
+        public static Hashtable CustomerTable = new Hashtable();
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -34,10 +34,10 @@ namespace BankManagementSystem
                 DisplayOptions();
                 AccountController accountControllerObj = new AccountController();
                 AddressModel addressObject;
-                CustomerModel customerObject=new CustomerModel();
+                CustomerModel customerObject = new CustomerModel();
                 CustomerController customerControllerObj = new CustomerController();
-                long accountNumber;
-                string password;
+                long accountNumber, recipientAccountNumber;
+                string password, IFSCCode;
                 double amount;
                 switch (choice)
                 {
@@ -103,7 +103,7 @@ namespace BankManagementSystem
                             Console.Write("Enter branch: ");
                             string selectedBranch = Console.ReadLine();
                             int count = 0;
-                        
+
                             foreach (string branch in BankBranchModel.IFSCCodeList.Keys)
                             {
                                 count++;
@@ -120,7 +120,7 @@ namespace BankManagementSystem
                                     Console.WriteLine("Enter a valid branch name");
                                 }
                             }
-                        }while (!branchSelected);
+                        } while (!branchSelected);
 
                         customerObject.AccountDetails = new AccountModel(accountType, branchName);
                         customerControllerObj.CreateAccount(customerObject);
@@ -137,7 +137,7 @@ namespace BankManagementSystem
                         Console.WriteLine("Enter your account number");
                         accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter the password");
-                         password = Console.ReadLine();
+                        password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
                         amount = Convert.ToDouble(Console.ReadLine());
                         accountControllerObj.Withdraw(accountNumber, password, amount);
@@ -160,22 +160,26 @@ namespace BankManagementSystem
                             Console.ForegroundColor = ConsoleColor.White;
                         }
                         break;
-                   
+
                     case 5:
-                        string password, IFSCCode;
-                        long senderAccountNumber, recipientAccountNumber;
                         Console.WriteLine("Enter your account number:");
-                        senderAccountNumber = Convert.ToInt64(Console.ReadLine());
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter the password");
                         password = Console.ReadLine();
                         Console.WriteLine("Enter your recipient's account number:");
                         recipientAccountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter your recipient's account number:");
                         IFSCCode = Console.ReadLine();
-                        accountControllerObj.MoneyTransfer(senderAccountNumber, recipientAccountNumber,password,IFSCCode);
+                        accountControllerObj.MoneyTransfer(accountNumber, recipientAccountNumber, password, IFSCCode);
                         break;
-                 
-                        
+                    case 8:
+                        Console.WriteLine("Enter your account number:");
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("Enter the password");
+                        password = Console.ReadLine();
+                        accountControllerObj.ApplyAtmCard(accountNumber, password);
+                        break;
+
                 }
 
             } while (choice != 8);

@@ -47,16 +47,6 @@ namespace BankManagementSystem.Controller
         public void MoneyTransfer(long senderAccountNumber,long recipientAccountNumber, string password,string IFSCCode)
         {
             CustomerModel senderCustomer,recipientCustomer;
-            string password,IFSCCode;
-            long senderAccountNumber, recipientAccountNumber;
-            Console.WriteLine("Enter your account number:");
-            senderAccountNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter the password");
-            password = Console.ReadLine();
-            Console.WriteLine("Enter your recipient's account number:");
-            recipientAccountNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter your recipient's account number:");
-            IFSCCode = Console.ReadLine();
             senderCustomer = (CustomerModel)Program.CustomerTable[senderAccountNumber];
             recipientCustomer = (CustomerModel)Program.CustomerTable[recipientAccountNumber];
             if (CustomerController.CustomerValidate(senderAccountNumber,password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.branchModel.IFSCCode==IFSCCode )
@@ -69,7 +59,7 @@ namespace BankManagementSystem.Controller
                 if (senderCustomer.AccountDetails.Balance > amount )
                 {
                     Deposit(senderAccountNumber, amount);
-                    Withdraw(senderAccountNumber,amount);
+                    Withdraw(senderAccountNumber,password,amount);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Amount Transfered to recipients account successfully!");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -92,26 +82,36 @@ namespace BankManagementSystem.Controller
 
         }
 
-        public  void ApplyAtmCard()
+        public  void ApplyAtmCard(long accountNumber,string password)
         {
+            if(CustomerController.CustomerValidate(accountNumber,password))
+            { 
 
             int choice;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Enter your choice\n1.Debit Card\n2.Credit Card");
             Console.ForegroundColor = ConsoleColor.White;
             choice =Convert.ToInt32(Console.ReadLine());
-            switch (choice) {
-                case 1:
-                case 2:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("You will get your Credit/Debit card within 15 buisness days,Thank you.");
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid choice!!");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break ;
+                switch (choice)
+                {
+                    case 1:
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("You will get your Credit/Debit card within 15 buisness days,Thank you.");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid choice!!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                }
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid credential");
+                Console.ForegroundColor = ConsoleColor.White;
             }
 
         }
