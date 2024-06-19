@@ -19,7 +19,7 @@ namespace BankManagementSystem.Controller
             }
             CustomerModel customerModelObj = (CustomerModel)Program.CustomerTable[accountNumber];
             customerModelObj.AccountDetails.Balance = amount;
-            Console.WriteLine("Amount has been credited to your account");
+            Console.WriteLine("Amount has been credited to account");
         }
 
         public void Withdraw(long accountNumber, string password, double amount)
