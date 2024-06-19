@@ -34,12 +34,12 @@ namespace BankManagementSystem.Controller
             }
             else
                 Console.WriteLine("Withdraw unsuccesfull due wrong credentials");
-
-
         }
 
-        public void CheckBalance()
+        public void CheckBalance(long accountNumber,string password)
         {
+            CustomerModel customer = (CustomerModel)Program.CustomerTable[accountNumber];
+            Console.WriteLine($"Your current balance is {customer.AccountDetails.Balance}");
 
         }
 

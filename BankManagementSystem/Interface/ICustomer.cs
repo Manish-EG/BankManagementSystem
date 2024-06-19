@@ -1,8 +1,10 @@
-﻿namespace BankManagementSystem.Interface
+﻿using BankManagementSystem.Model;
+
+namespace BankManagementSystem.Interface
 {
     public interface ICustomer
     {
-        void CreateAccount();
+        void CreateAccount(CustomerModel customer);
         void ViewDetails();
         void EditDetails();
     }
