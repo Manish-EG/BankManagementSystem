@@ -44,6 +44,21 @@ namespace BankManagementSystem
                         double amount = Convert.ToDouble(Console.ReadLine());
                         accountControllerObj.Deposit(accountNumber, amount);
                         break;
+                    case 5:
+                        string password, IFSCCode;
+                        long senderAccountNumber, recipientAccountNumber;
+                        Console.WriteLine("Enter your account number:");
+                        senderAccountNumber = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("Enter the password");
+                        password = Console.ReadLine();
+                        Console.WriteLine("Enter your recipient's account number:");
+                        recipientAccountNumber = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("Enter your recipient's account number:");
+                        IFSCCode = Console.ReadLine();
+                        accountControllerObj.MoneyTransfer(senderAccountNumber, recipientAccountNumber,password,IFSCCode);
+                        break;
+                 
+                        
                 }
 
             } while (choice != 8);
