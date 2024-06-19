@@ -140,12 +140,18 @@ namespace BankManagementSystem
                          password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
                         amount = Convert.ToDouble(Console.ReadLine());
-                        if (customerObject.AccountDetails.Balance <= amount)
+                        if (CustomerController.CustomerValidate(accountNumber, password))
+                        {
                             accountControllerObj.Withdraw(accountNumber, password, amount);
+
+                        }
                         else
                         {
-                            Console.WriteLine($"Please enter the amount less than  the balance amount {customerObject.AccountDetails.Balance}");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nInvalid account number or password!!");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
+                       
                         break;
 
                     case 4:

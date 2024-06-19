@@ -28,8 +28,16 @@ namespace BankManagementSystem.Controller
             {
 
                 CustomerModel customerObject = (CustomerModel)Program.CustomerTable[accountNumber];
-                customerObject.AccountDetails.Balance -= amount;
-                Console.WriteLine("Withdraw Succesfull");
+                if (amount > customerObject.AccountDetails.Balance )
+                    Console.WriteLine($"Please enter the amount less than  the balance amount {customerObject.AccountDetails.Balance}");
+                else if(amount<=0)
+                    Console.WriteLine("Invalid entry");
+                else
+                {
+                    customerObject.AccountDetails.Balance -= amount;
+                    Console.WriteLine("Withdraw Succesfull");
+                }
+               
 
             }
             else
