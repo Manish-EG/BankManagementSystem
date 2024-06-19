@@ -37,6 +37,13 @@ namespace BankManagementSystem
                 AccountController accountController = new AccountController();
                 switch (choice)
                 {
+                    case 2:
+                        Console.Write("Enter the account number: ");
+                        long accountNumber = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter the amount to deposit: ");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+                        accountControllerObj.Deposit(accountNumber, amount);
+                        break;
                     case 3:
                         Console.WriteLine("Enter your account number");
                         long accountNumber = Convert.ToInt64(Console.ReadLine());
