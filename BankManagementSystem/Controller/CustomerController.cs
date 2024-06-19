@@ -16,42 +16,53 @@ namespace BankManagementSystem.Controller
         {
             CustomerModel customerModel;
             customerModel = (CustomerModel)Program.CustomerTable[accountNumber];
-                Console.WriteLine("Saved account details:");
+                Console.WriteLine("Account details:");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 ViewDetails(accountNumber);
                 Console.ForegroundColor=ConsoleColor.Green;
                 Console.WriteLine("\nSelect the field you want to update: \n1.Name\n2.DOB\n3.Address\n4.Phone Number\n5.Exit");
                 Console.ForegroundColor = ConsoleColor.White;
                 int choice = int.Parse(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        Console.WriteLine("Enter new name:");
-                        string replaceName=Console.ReadLine();
-                        customerModel.CustomerName = replaceName;
-                        break;
-                    case 2:
-                        Console.WriteLine("Enter updated date of birth:");
-                        string updateDOB = Console.ReadLine();
-                        customerModel.CustomerName = updateDOB;
-                        break;
-                    case 3:
-                        Console.WriteLine("Enter new Address:");
-                        string updateAddress = Console.ReadLine();
-                        customerModel.CustomerName = updateAddress;
-                        break;
-                    case 4:
-                        Console.WriteLine("Enter new Phone number:");
-                        string updatePhoneNumber = Console.ReadLine();
-                        customerModel.CustomerName = updatePhoneNumber;
-                        break;
-                    case 5:
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Enter correct option!!");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        break;
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter new name:");
+                    string replaceName = Console.ReadLine();
+                    customerModel.CustomerName = replaceName;
+                    break;
+                case 2:
+                    Console.WriteLine("Enter updated date of birth:");
+                    DateTime updateDOB = Convert.ToDateTime(Console.ReadLine());
+                    customerModel.DateOfBirth = updateDOB;
+                    break;
+                case 3:
+
+                    Console.WriteLine("Enter new Address:");
+                    Console.Write("Location: ");
+                    string updatedLocation = Console.ReadLine();
+                    customerModel.CustomerAddress.LocationAddress = updatedLocation;
+                    Console.Write("\nCity: ");
+                    string updatedCity = Console.ReadLine();
+                    customerModel.CustomerAddress.City = updatedCity;
+                    Console.Write("\nPincode: ");
+                    int updatedPincode = Convert.ToInt32(Console.ReadLine());
+                    customerModel.CustomerAddress.PinCode = updatedPincode;
+                    Console.Write("\nCountry: ");
+                    string updatedCountry = Console.ReadLine();
+                    customerModel.CustomerAddress.Country = updatedCountry;
+                    break;
+                case 4:
+                    Console.WriteLine("Enter new Phone number:");
+                    long updatePhoneNumber = Convert.ToInt64(Console.ReadLine());
+                    customerModel.PhoneNumber = updatePhoneNumber;
+                    break;
+                case 5:
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Enter correct option!!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
                 }
             
             
