@@ -316,8 +316,7 @@ namespace BankManagementSystem
 
                 }
 
-            } while (choice != 8);
-
+            } while (choice != 9);
         }
     }
 }
