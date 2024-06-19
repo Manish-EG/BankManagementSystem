@@ -3,7 +3,7 @@ using BankManagementSystem.Model;
 using System;
 namespace BankManagementSystem.Controller
 {
-    public class AccountController:IAccount
+    public sealed class AccountController:IAccount
     {
         public void Deposit(long accountNumber, double amount)
         {
@@ -19,10 +19,10 @@ namespace BankManagementSystem.Controller
             }
             CustomerModel customerModelObj = (CustomerModel)Program.CustomerTable[accountNumber];
             customerModelObj.AccountDetails.Balance = amount;
-            Console.WriteLine("Amount has been credited to your account");
+            Console.WriteLine("Amount has been credited to account");
         }
 
-        public void Withdraw(long accountNumber, string password, int amount)
+        public void Withdraw(long accountNumber, string password, double amount)
         {
             if (CustomerController.CustomerValidate(accountNumber, password))
             {
@@ -34,12 +34,12 @@ namespace BankManagementSystem.Controller
             }
             else
                 Console.WriteLine("Withdraw unsuccesfull due wrong credentials");
-
-
         }
 
-        public void CheckBalance()
+        public void CheckBalance(long accountNumber,string password)
         {
+            CustomerModel customer = (CustomerModel)Program.CustomerTable[accountNumber];
+            Console.WriteLine($"\nYour current balance is {customer.AccountDetails.Balance} rupees");
 
         }
 
