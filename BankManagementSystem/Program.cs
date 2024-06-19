@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using BankManagementSystem.Controller;
 
 namespace BankManagementSystem
 {
     public class Program
     {
-         private static int choice;
-         public Hashtable CustomerTable = new Hashtable();
+        private static int choice;
+        public static Hashtable CustomerTable = new Hashtable();
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -30,6 +31,7 @@ namespace BankManagementSystem
             do
             {
                 DisplayOptions();
+                AccountController accountControllerObj = new AccountController();
                 Account accountObject;
                 Address addressObject;
                 BankBranch branchObject;
@@ -122,6 +124,13 @@ namespace BankManagementSystem
                             accountObject, email, password);
                         customer.CreateAccount(customer);
                         break;
+                    case 2:
+                        Console.Write("Enter the account number: ");
+                        long accountNumber = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter the amount to deposit: ");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+                        accountControllerObj.Deposit(accountNumber, amount);
+                        break;
 
                     case 4:
                         Console.Write("Enter your account number: ");
@@ -138,6 +147,7 @@ namespace BankManagementSystem
                             Console.WriteLine("\nAccount number doesnot exist!!");
                         }
                         break;
+                   
                 }
 
             } while (choice != 8);
