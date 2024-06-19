@@ -22,9 +22,18 @@ namespace BankManagementSystem.Controller
             Console.WriteLine("Amount has been credited to your account");
         }
 
-        public void Withdraw()
+        public void Withdraw(long accountNumber, string password, int amount)
         {
+            if (CustomerController.CustomerValidate(accountNumber, password))
+            {
 
+                CustomerModel customerObject = (CustomerModel)Program.CustomerTable[accountNumber];
+                customerObject.AccountDetails.Balance -= amount;
+                Console.WriteLine("Withdraw Succesfull");
+
+            }
+            else
+                Console.WriteLine("Withdraw unsuccesfull due wrong credentials");
         }
 
         public void CheckBalance(long accountNumber,string password)
