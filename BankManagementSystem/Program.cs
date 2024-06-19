@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using BankManagementSystem.Controller;
+using BankManagementSystem.Interface;
+using BankManagementSystem.Model;
 
 namespace BankManagementSystem
 {
@@ -30,7 +33,8 @@ namespace BankManagementSystem
             do
             {
                 DisplayOptions();
-                Customer customerObject = new Customer();
+                CustomerModel customerObject = new CustomerModel();
+                AccountController accountController = new AccountController();
                 switch (choice)
                 {
                     case 3:
@@ -40,7 +44,7 @@ namespace BankManagementSystem
                         string password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
                         int amount = Convert.ToInt32(Console.ReadLine());
-                        customerObject.AccountDetails.Withdraw(accountNumber, password, amount);
+                        accountController.Withdraw(accountNumber, password, amount);
                         break;
                 }
 

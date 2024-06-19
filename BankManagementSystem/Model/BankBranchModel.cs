@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BankManagementSystem.Model
 {
-    public  class BankBranchModel
+    public class BankBranchModel
     {
 
         public string BranchName { get; set; }
@@ -16,7 +16,7 @@ namespace BankManagementSystem.Model
             {"Kapikad",new List<String>{ "EGIND0005780","AjanthaBusiness","577101","Manglore","India" } }
         };
         public readonly string IFSCCode;
-        AddressModel branchAddress;
+        public AddressModel branchAddress;
         public BankBranchModel(string branchName)
         {
             BranchName = branchName;
@@ -26,4 +26,5 @@ namespace BankManagementSystem.Model
         }
 
     }
+}
 
