@@ -173,12 +173,20 @@ namespace BankManagementSystem
                             amount = Convert.ToDouble(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.White;
                             accountControllerObj.Withdraw(accountNumber, password, amount);
+
                         }
-                        catch (Exception e)
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nInvalid account number or password!!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                         catch (Exception e)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine($"Execption found: {e.Message}");
                         }
+
                         break;
 
                     case 4:
