@@ -6,7 +6,7 @@ namespace BankManagementSystem.Model
     public class AccountModel
     {
         public string AccountType { get; set; }
-        public static long _accountNumber = 110000; 
+        private static long _accountNumber = 110000; 
         public double Balance { get; set; }
         public DateTime DateOfCreation { get; set; }
         public BankBranchModel branchModel { get; set; }
