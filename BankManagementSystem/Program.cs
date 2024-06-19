@@ -55,7 +55,7 @@ namespace BankManagementSystem
                         Console.Write("Enter your country: ");
                         string country = Console.ReadLine();
 
-                        addressObject = new AddressModel(location, pincode, city, country);
+                        customerObject.CustomerAddress = new AddressModel(location, pincode, city, country);
 
                         Console.Write("Enter your phone number: ");
                         customerObject.PhoneNumber = Convert.ToInt64(Console.ReadLine());
@@ -164,8 +164,7 @@ namespace BankManagementSystem
                         Console.WriteLine("Enter your account number:");
                         accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter your password:");
-                        string password = Console.ReadLine();
-                        CustomerController customerControllerObj = new CustomerController();
+                        password = Console.ReadLine();
                         if (CustomerController.CustomerValidate(accountNumber, password))
                         {
                             customerControllerObj.ViewDetails(accountNumber);

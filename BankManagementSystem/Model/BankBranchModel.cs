@@ -6,9 +6,7 @@ namespace BankManagementSystem.Model
 {
     public sealed  class BankBranchModel
     {
-        public string BranchName;
-
-        public string BranchName { get; set; }
+         public string BranchName { get; set; }
 
 
         public static Hashtable IFSCCodeList = new Hashtable()
