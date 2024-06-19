@@ -22,7 +22,7 @@ namespace BankManagementSystem.Controller
             Console.WriteLine("Amount has been credited to your account");
         }
 
-        public void Withdraw(long accountNumber, string password, int amount)
+        public void Withdraw(long accountNumber, string password, double amount)
         {
             if (CustomerController.CustomerValidate(accountNumber, password))
             {
