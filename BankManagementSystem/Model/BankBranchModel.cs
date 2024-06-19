@@ -12,17 +12,17 @@ namespace BankManagementSystem.Model
 
         public static Hashtable IFSCCodeList = new Hashtable()
         {
-            {"Yeyyadi",new List<String>{ "EGIND0005670", "wrkwrk,Yeyyadi","577101","Manglore","India" } },
-            {"Kapikad",new List<String>{ "EGIND0005780","AjanthaBusiness","577101","Manglore","India" } }
+            {"yeyyadi",new List<String>{ "EGIND0005670", "wrkwrk,Yeyyadi","577101","Manglore","India" } },
+            {"kapikad",new List<String>{ "EGIND0005780","AjanthaBusiness","577101","Manglore","India" } }
         };
         public readonly string IFSCCode;
         public AddressModel branchAddress;
         public BankBranchModel(string branchName)
         {
             BranchName = branchName;
-            List<string> retrievedList = IFSCCodeList[branchName] as List<string>;
-            IFSCCode = retrievedList?[0];
-            branchAddress = new AddressModel(retrievedList?[1], int.Parse(retrievedList?[2]), retrievedList?[3], retrievedList?[4]);
+            List<string> IfscCodeAndAddressList = IFSCCodeList[branchName] as List<string>;
+            IFSCCode = IfscCodeAndAddressList?[0];
+            branchAddress = new AddressModel(IfscCodeAndAddressList?[1], int.Parse(IfscCodeAndAddressList?[2]), IfscCodeAndAddressList?[3], IfscCodeAndAddressList?[4]);
         }
 
     }
