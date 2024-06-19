@@ -66,7 +66,7 @@ namespace BankManagementSystem
                             Console.Write("Enter your country: ");
                             string country = Console.ReadLine();
 
-                            customerObject.CustomerAddress = new AddressModel(location, pincode, city, country);
+                        customerObject.CustomerAddress = new AddressModel(location, pincode, city, country);
 
                             Console.Write("Enter your phone number: ");
                             customerObject.PhoneNumber = Convert.ToInt64(Console.ReadLine());

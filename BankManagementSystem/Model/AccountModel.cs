@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
 
 namespace BankManagementSystem.Model
 {
@@ -9,14 +8,14 @@ namespace BankManagementSystem.Model
         public static long AccountNumber = 110000; 
         public double Balance { get; set; }
         public DateTime DateOfCreation { get; set; }
-        public BankBranchModel branchModel { get; set; }
+        public BankBranchModel BranchModel { get; set; }
 
         public AccountModel(string type, string branch)
         {
             AccountType = type;
             Balance = 0;
             DateOfCreation = System.DateTime.Now;
-            branchModel = new BankBranchModel(branch);
+            BranchModel = new BankBranchModel(branch);
         }
     }
 }
