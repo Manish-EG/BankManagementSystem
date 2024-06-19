@@ -1,4 +1,5 @@
 ﻿using BankManagementSystem.Controller;
+using BankManagementSystem.Interface;
 using BankManagementSystem.Model;
 using System;
 using System.Collections;
@@ -12,7 +13,12 @@ namespace BankManagementSystem
         static void DisplayOptions()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("----------------------------------------");
+            Console.Write($"---------------");
+            Console.ForegroundColor= ConsoleColor.DarkMagenta;
+            Console.Write(BankModel.BankName);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"---------------");
+            Console.WriteLine();
             Console.WriteLine("1. Create account");
             Console.WriteLine("2. Deposit amount");
             Console.WriteLine("3. Withdraw amount");
@@ -29,19 +35,18 @@ namespace BankManagementSystem
         }
         static void Main(string[] args)
         {
-                do
+            do
+            {
+                DisplayOptions();
+                AccountController accountControllerObj = new AccountController();
+                CustomerModel customerObject = new CustomerModel();
+                CustomerController customerControllerObj = new CustomerController();
+                long accountNumber, recipientAccountNumber;
+                string password, IFSCCode;
+                double amount;
+                switch (choice)
                 {
-                    DisplayOptions();
-                    AccountController accountControllerObj = new AccountController();
-                   
-                    CustomerModel customerObject = new CustomerModel();
-                    CustomerController customerControllerObj = new CustomerController();
-                    long accountNumber, recipientAccountNumber;
-                    string password, IFSCCode;
-                    double amount;
-                    switch (choice)
-                    {
-                        case 1:
+                    case 1:
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -58,7 +63,7 @@ namespace BankManagementSystem
                             Console.Write("Enter your country: ");
                             string country = Console.ReadLine();
 
-                        customerObject.CustomerAddress = new AddressModel(location, pincode, city, country);
+                            customerObject.CustomerAddress = new AddressModel(location, pincode, city, country);
 
                             Console.Write("Enter your phone number: ");
                             customerObject.PhoneNumber = Convert.ToInt64(Console.ReadLine());
@@ -139,7 +144,7 @@ namespace BankManagementSystem
                             Console.WriteLine($"Execption found: {e.Message}");
                         }
                         break;
-                        case 2:
+                    case 2:
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -155,16 +160,18 @@ namespace BankManagementSystem
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine($"Execption found: {e.Message}");
                         }
-                            break;
+                        break;
                     case 3:
-                        Console.WriteLine("Enter your account number");
-                        accountNumber = Convert.ToInt64(Console.ReadLine());
-                        Console.WriteLine("Enter the password");
-                         password = Console.ReadLine();
-                        Console.WriteLine("Enter the amount to withdraw");
-                        amount = Convert.ToDouble(Console.ReadLine());
-                        if (CustomerController.CustomerValidate(accountNumber, password))
+                        try
                         {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Enter your account number");
+                            accountNumber = Convert.ToInt64(Console.ReadLine());
+                            Console.WriteLine("Enter the password");
+                            password = Console.ReadLine();
+                            Console.WriteLine("Enter the amount to withdraw");
+                            amount = Convert.ToDouble(Console.ReadLine());
+                            Console.ForegroundColor = ConsoleColor.White;
                             accountControllerObj.Withdraw(accountNumber, password, amount);
 
                         }
@@ -174,11 +181,17 @@ namespace BankManagementSystem
                             Console.WriteLine("\nInvalid account number or password!!");
                             Console.ForegroundColor = ConsoleColor.White;
                         }
-                       
+                         catch (Exception e)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"Execption found: {e.Message}");
+                        }
+
                         break;
 
-                        case 4:
-                        try { 
+                    case 4:
+                        try
+                        {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("Enter your account number: ");
                             accountNumber = Convert.ToInt64(Console.ReadLine());
@@ -204,8 +217,9 @@ namespace BankManagementSystem
                         }
                         break;
 
-                        case 5:
-                        try { 
+                    case 5:
+                        try
+                        {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Enter your account number:");
                             accountNumber = Convert.ToInt64(Console.ReadLine());
@@ -224,8 +238,62 @@ namespace BankManagementSystem
                             Console.WriteLine($"Execption found: {e.Message}");
                         }
                         break;
-                        case 8:
-                        try { 
+                    case 6:
+                        try
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Enter your account number:");
+                            accountNumber = Convert.ToInt64(Console.ReadLine());
+                            Console.WriteLine("Enter your password:");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            password = Console.ReadLine();
+                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            {
+                                customerControllerObj.ViewDetails(accountNumber);
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Invalid account number or password!!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"Execption found: {e.Message}");
+                        }
+                        break;
+                    case 7:
+                        try
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Enter your account number:");
+                            accountNumber = Convert.ToInt64(Console.ReadLine());
+                            Console.WriteLine("Enter your password:");
+                            password = Console.ReadLine();
+                            Console.ForegroundColor = ConsoleColor.White;
+                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            {
+                                CustomerController customerController = new CustomerController();
+                                customerController.EditDetails(accountNumber);
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Invalid account number or password!!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"Execption found: {e.Message}");
+                        }
+                        break;
+                    case 8:
+                        try
+                        {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Enter your account number:");
                             accountNumber = Convert.ToInt64(Console.ReadLine());
@@ -240,46 +308,11 @@ namespace BankManagementSystem
                             Console.WriteLine($"Execption found: {e.Message}");
                         }
                         break;
-                    case 6:
-                        Console.WriteLine("Enter your account number:");
-                        accountNumber = Convert.ToInt64(Console.ReadLine());
-                        Console.WriteLine("Enter your password:");
-                        password = Console.ReadLine();
-                        if (CustomerController.CustomerValidate(accountNumber, password))
-                        {
-                            customerControllerObj.ViewDetails(accountNumber);
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid account number or password!!");
-                            Console.ForegroundColor = ConsoleColor.White;
-
-                        }
-                        break;
-                    case 7:
-                        Console.WriteLine("Enter your account number:");
-                        accountNumber = Convert.ToInt64(Console.ReadLine());
-                        Console.WriteLine("Enter your password:");
-                        password = Console.ReadLine();
-                        if (CustomerController.CustomerValidate(accountNumber, password))
-                        {
-                            CustomerController customerController = new CustomerController();
-                            customerController.EditDetails(accountNumber);
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid account number or password!!");
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-
-                        break;    
 
                 }
 
-                } while (choice != 8);
-           
+            } while (choice != 8);
+
         }
     }
 }
