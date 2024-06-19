@@ -17,7 +17,6 @@ namespace BankManagementSystem.Model
             Balance = 0;
             DateOfCreation = System.DateTime.Now;
             branchModel = new BankBranchModel(branch);
-            
         }
     }
 }
