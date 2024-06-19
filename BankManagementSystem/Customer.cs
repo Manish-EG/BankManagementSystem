@@ -49,14 +49,14 @@ namespace BankManagementSystem
                 Console.WriteLine("---------------EG BANK---------------");
                 Console.WriteLine("Customer name: " + customer.CustomerName);
                 Console.WriteLine("Customer DOB: " + customer.DateOfBirth);
-                Console.WriteLine("Customer address: " + customer.CustomerAddress.LocationAddress+", "+ customer.CustomerAddress.City + ", " + customer.CustomerAddress.PinCode + ", " + customer.CustomerAddress.Country);
+                Console.WriteLine("Customer address: " + customer.CustomerAddress.LocationAddress+", "+ customer.CustomerAddress.City + ", \n" + customer.CustomerAddress.PinCode + ", " + customer.CustomerAddress.Country);
                 Console.WriteLine("Customer phone number: " + customer.PhoneNumber);
                 Console.WriteLine("Account number: " + customer.AccountDetails.AccountNumber);
                 Console.WriteLine("Account type: " + customer.AccountDetails.AccountType);
                 Console.WriteLine("Date created: " + customer.AccountDetails.DateOfCreation);
                 Console.WriteLine("Branch Name: " + customer.AccountDetails.Branch.BranchName);
                 Console.WriteLine("IFSC code: " + customer.AccountDetails.Branch.IFSCCode);
-                Console.WriteLine("Branch Address: "+customer.AccountDetails.Branch.branchAddress.LocationAddress + ", " + customer.AccountDetails.Branch.branchAddress.City + ", " + customer.AccountDetails.Branch.branchAddress.PinCode + ", " + customer.AccountDetails.Branch.branchAddress.Country);
+                Console.WriteLine("Branch Address: "+customer.AccountDetails.Branch.branchAddress.LocationAddress + ", " + customer.AccountDetails.Branch.branchAddress.City + ", \n" + customer.AccountDetails.Branch.branchAddress.PinCode + ", " + customer.AccountDetails.Branch.branchAddress.Country);
             }
             else
             {
