@@ -33,7 +33,7 @@ namespace BankManagementSystem
                 {
                     DisplayOptions();
                     AccountController accountControllerObj = new AccountController();
-                    AddressModel addressObject;
+                   
                     CustomerModel customerObject = new CustomerModel();
                     CustomerController customerControllerObj = new CustomerController();
                     long accountNumber, recipientAccountNumber;
