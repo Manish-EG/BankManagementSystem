@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BankManagementSystem
 {
-    internal class Bank
+    public  class Bank
     {
+        public string BankName { get; set; }
+        public Address Address;
+        public int BankCode;
+
     }
 }

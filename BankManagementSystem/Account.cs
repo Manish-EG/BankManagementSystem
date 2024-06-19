@@ -34,8 +34,17 @@ namespace BankManagementSystem
 
         }
 
-        public void Withdraw()
+        public void Withdraw(long accountNumber,string password,int amount)
         {
+           
+            if ( CustomerValidate(accountNumber,password)) {
+              
+                Customer customerObject = (Customer)Program.CustomerTable[accountNumber];
+                customerObject.AccountDetails.Balance-=amount;
+                Console.WriteLine("Withdraw Succesfull");
+
+            }
+           
 
         }
 
