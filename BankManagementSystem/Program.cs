@@ -45,6 +45,7 @@ namespace BankManagementSystem
                         Console.Write("Enter your name: ");
                         customerObject.CustomerName = Console.ReadLine();
                         Console.Write("Enter your date of birth: ");
+                        
                         customerObject.DateOfBirth = Convert.ToDateTime(Console.ReadLine());
                         Console.Write("Enter your location: ");
                         string location = Console.ReadLine();
@@ -166,9 +167,9 @@ namespace BankManagementSystem
                         accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter the password");
                         password = Console.ReadLine();
-                        Console.WriteLine("Enter your recipient's account number:");
+                        Console.WriteLine("Enter recipient's account number:");
                         recipientAccountNumber = Convert.ToInt64(Console.ReadLine());
-                        Console.WriteLine("Enter your recipient's account number:");
+                        Console.WriteLine("Enter recipient's IFSC code:");
                         IFSCCode = Console.ReadLine();
                         accountControllerObj.MoneyTransfer(accountNumber, recipientAccountNumber, password, IFSCCode);
                         break;
@@ -182,7 +183,7 @@ namespace BankManagementSystem
 
                 }
 
-            } while (choice != 8);
+            } while (choice != 9);
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 namespace BankManagementSystem.Controller
 {
-    public sealed class AccountController:IAccount
+    public sealed class AccountController : IAccount
     {
         public void Deposit(long accountNumber, double amount)
         {
@@ -37,29 +37,29 @@ namespace BankManagementSystem.Controller
                 Console.WriteLine("Withdraw unsuccesfull due wrong credentials");
         }
 
-        public void CheckBalance(long accountNumber,string password)
+        public void CheckBalance(long accountNumber, string password)
         {
             CustomerModel customer = (CustomerModel)Program.CustomerTable[accountNumber];
             Console.WriteLine($"\nYour current balance is {customer.AccountDetails.Balance} rupees");
 
         }
 
-        public void MoneyTransfer(long senderAccountNumber,long recipientAccountNumber, string password,string IFSCCode)
+        public void MoneyTransfer(long senderAccountNumber, long recipientAccountNumber, string password, string IFSCCode)
         {
-            CustomerModel senderCustomer,recipientCustomer;
+            CustomerModel senderCustomer, recipientCustomer;
             senderCustomer = (CustomerModel)Program.CustomerTable[senderAccountNumber];
             recipientCustomer = (CustomerModel)Program.CustomerTable[recipientAccountNumber];
-            if (CustomerController.CustomerValidate(senderAccountNumber,password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.branchModel.IFSCCode==IFSCCode )
+            if (CustomerController.CustomerValidate(senderAccountNumber, password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.branchModel.IFSCCode == IFSCCode)
             {
-                
+
                 double amount;
                 Console.WriteLine("Enter the ammount");
-                amount=Convert.ToDouble(Console.ReadLine());
-                
-                if (senderCustomer.AccountDetails.Balance > amount )
+                amount = Convert.ToDouble(Console.ReadLine());
+
+                if (senderCustomer.AccountDetails.Balance > amount)
                 {
-                    Deposit(senderAccountNumber, amount);
-                    Withdraw(senderAccountNumber,password,amount);
+                    Deposit(recipientAccountNumber, amount);
+                    Withdraw(senderAccountNumber, password, amount);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Amount Transfered to recipients account successfully!");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -82,16 +82,16 @@ namespace BankManagementSystem.Controller
 
         }
 
-        public  void ApplyAtmCard(long accountNumber,string password)
+        public void ApplyAtmCard(long accountNumber, string password)
         {
-            if(CustomerController.CustomerValidate(accountNumber,password))
-            { 
+            if (CustomerController.CustomerValidate(accountNumber, password))
+            {
 
-            int choice;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Enter your choice\n1.Debit Card\n2.Credit Card");
-            Console.ForegroundColor = ConsoleColor.White;
-            choice =Convert.ToInt32(Console.ReadLine());
+                int choice;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Enter your choice\n1.Debit Card\n2.Credit Card");
+                Console.ForegroundColor = ConsoleColor.White;
+                choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
@@ -113,9 +113,9 @@ namespace BankManagementSystem.Controller
                 Console.WriteLine("Invalid credential");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-
+            return;
         }
 
-        
+
     }
 }
