@@ -10,8 +10,10 @@ namespace BankManagementSystem.Controller
         {
             AccountModel.AccountNumber++;
             Program.CustomerTable.Add(AccountModel.AccountNumber, customer);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nAccount created successfully!!");
             Console.WriteLine($"\nYour account number is {AccountModel.AccountNumber}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public void EditDetails()
         {
