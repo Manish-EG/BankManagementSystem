@@ -10,13 +10,13 @@ namespace BankManagementSystem.Model
         public string BranchName { get; set; }
 
 
-        public Hashtable IFSCCodeList = new Hashtable()
+        public static Hashtable IFSCCodeList = new Hashtable()
         {
             {"Yeyyadi",new List<String>{ "EGIND0005670", "wrkwrk,Yeyyadi","577101","Manglore","India" } },
             {"Kapikad",new List<String>{ "EGIND0005780","AjanthaBusiness","577101","Manglore","India" } }
         };
         public readonly string IFSCCode;
-        AddressModel branchAddress;
+        public AddressModel branchAddress;
         public BankBranchModel(string branchName)
         {
             BranchName = branchName;
@@ -27,3 +27,4 @@ namespace BankManagementSystem.Model
 
     }
 }
+

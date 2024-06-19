@@ -1,14 +1,16 @@
 ﻿using BankManagementSystem.Interface;
 using BankManagementSystem.Model;
+using System;
 
 namespace BankManagementSystem.Controller
 {
     public sealed class CustomerController: ICustomer
     {
-        public void CreateAccount()
+        public void CreateAccount(CustomerModel customer)
         {
 
-
+            Program.CustomerTable.Add(customer.AccountDetails.AccountNumber, customer);
+            Console.WriteLine("\nAccount created successfully!!");
 
         }
         public void EditDetails()
