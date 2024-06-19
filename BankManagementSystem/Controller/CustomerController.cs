@@ -4,7 +4,7 @@ using System;
 
 namespace BankManagementSystem.Controller
 {
-    public class CustomerController: ICustomer
+    public sealed class CustomerController: ICustomer
     {
         public void CreateAccount(CustomerModel customer)
         {
@@ -29,7 +29,7 @@ namespace BankManagementSystem.Controller
 
             CustomerModel customerObj = (CustomerModel)Program.CustomerTable[accountNumber];
 
-            if (customerObj.Password != password) return false;
+            if (!customerObj.Password.Equals(password)) return false;
 
             return true;
         }
