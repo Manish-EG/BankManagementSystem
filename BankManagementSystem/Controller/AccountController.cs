@@ -43,7 +43,7 @@ namespace BankManagementSystem.Controller
 
         }
 
-        public void MoneyTransfer()
+        public void MoneyTransfer(long senderAccountNumber,long recipientAccountNumber, string password,string IFSCCode)
         {
             CustomerModel customer;
             string password;
