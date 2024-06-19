@@ -43,17 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bank.cs" />
-    <Compile Include="BankBranch.cs" />
-    <Compile Include="Account.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="Address.cs" />
-    <Compile Include="BaseEntity.cs" />
+    <Compile Include="Controller\AccountController.cs" />
+    <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Interface\IAccount.cs" />
+    <Compile Include="Interface\ICustomer.cs" />
+    <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\BankBranchModel.cs" />
+    <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\CustomerModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
