@@ -36,6 +36,7 @@ namespace BankManagementSystem
 
                 switch (choice)
                 {
+                   
                     case 2:
                         Console.Write("Enter the account number: ");
                         long accountNumber = Convert.ToInt32(Console.ReadLine());
