@@ -4,15 +4,14 @@ using System;
 
 namespace BankManagementSystem.Controller
 {
-    public class CustomerController: ICustomer
+    public sealed class CustomerController: ICustomer
     {
         public void CreateAccount(CustomerModel customer)
         {
-
-            Program.CustomerTable.Add(customer.AccountDetails.AccountNumber, customer);
+            AccountModel.AccountNumber++;
+            Program.CustomerTable.Add(AccountModel.AccountNumber, customer);
             Console.WriteLine("\nAccount created successfully!!");
-
-
+            Console.WriteLine($"\nYour account number is {AccountModel.AccountNumber}");
         }
         public void EditDetails(long accountNumber)
         {
@@ -99,7 +98,7 @@ namespace BankManagementSystem.Controller
 
             CustomerModel customerObj = (CustomerModel)Program.CustomerTable[accountNumber];
 
-            if (customerObj.Password != password) return false;
+            if (!customerObj.Password.Equals(password)) return false;
 
             return true;
         }

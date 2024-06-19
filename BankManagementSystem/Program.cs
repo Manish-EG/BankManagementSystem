@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using BankManagementSystem.Controller;
-using BankManagementSystem.Interface;
+﻿using BankManagementSystem.Controller;
 using BankManagementSystem.Model;
+using System;
+using System.Collections;
 
 namespace BankManagementSystem
 {
@@ -25,7 +24,7 @@ namespace BankManagementSystem
             Console.WriteLine("9. Exit");
             Console.WriteLine("----------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Enter your choice:");
+            Console.Write("Enter your choice: ");
             choice = Convert.ToInt32(Console.ReadLine());
         }
         static void Main(string[] args)
@@ -34,12 +33,12 @@ namespace BankManagementSystem
             {
                 DisplayOptions();
                 AccountController accountControllerObj = new AccountController();
-                AccountModel accountObject;
                 AddressModel addressObject;
                 CustomerModel customerObject=new CustomerModel();
                 CustomerController customerControllerObj = new CustomerController();
                 long accountNumber;
                 string password;
+                double amount;
                 switch (choice)
                 {
                     case 1:
@@ -130,18 +129,18 @@ namespace BankManagementSystem
                         Console.Write("Enter the account number: ");
                         accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.Write("Enter the amount to deposit: ");
-                        double amount = Convert.ToDouble(Console.ReadLine());
+                        amount = Convert.ToDouble(Console.ReadLine());
                         accountControllerObj.Deposit(accountNumber, amount);
                         break;
 
                     case 3:
                         Console.WriteLine("Enter your account number");
-                        long accountNumber = Convert.ToInt64(Console.ReadLine());
+                        accountNumber = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("Enter the password");
-                        string password = Console.ReadLine();
+                         password = Console.ReadLine();
                         Console.WriteLine("Enter the amount to withdraw");
-                        int amount = Convert.ToInt32(Console.ReadLine());
-                        accountController.Withdraw(accountNumber, password, amount);
+                        amount = Convert.ToDouble(Console.ReadLine());
+                        accountControllerObj.Withdraw(accountNumber, password, amount);
                         break;
 
                     case 4:
