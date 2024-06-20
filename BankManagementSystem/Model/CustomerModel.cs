@@ -17,7 +17,7 @@ namespace BankManagementSystem.Model
             set
             {
                 string phoneNumberString = value.ToString();
-                if (phoneNumberString.Length < 10 || phoneNumberString.Length > 10)
+                if (phoneNumberString.Length != 10)
                 {
                     throw new Exception("Invalid phone number!!");
                 }

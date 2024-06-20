@@ -14,6 +14,7 @@ namespace BankManagementSystem.Controller
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nAccount created successfully!!");
             Console.WriteLine($"\nYour account number is {AccountModel.AccountNumber}");
+            Console.WriteLine($"\nYour IFSC code is {customer.AccountDetails.BranchModel.IFSCCode}");
             Console.ForegroundColor = ConsoleColor.White;
         }
         public void EditDetails(long accountNumber)
@@ -23,8 +24,10 @@ namespace BankManagementSystem.Controller
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Account details:");
             ViewDetails(accountNumber);
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\nSelect the field you want to update: \n1.Name\n2.DOB\n3.Address\n4.Phone Number\n5.Exit");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor=ConsoleColor.White;
+            Console.Write("Enter your choice: ");
             int choice = int.Parse(Console.ReadLine());
             switch (choice)
             {
@@ -100,9 +103,9 @@ namespace BankManagementSystem.Controller
             Console.WriteLine("Account number: " + accountNumber);
             Console.WriteLine("Account type: " + customer.AccountDetails.AccountType);
             Console.WriteLine("Date created: " + customer.AccountDetails.DateOfCreation);
-            Console.WriteLine("Branch Name: " + customer.AccountDetails.branchModel.BranchName);
-            Console.WriteLine("IFSC code: " + customer.AccountDetails.branchModel.IFSCCode);
-            Console.WriteLine("Branch Address: " + customer.AccountDetails.branchModel.branchAddress.LocationAddress + ", " + customer.AccountDetails.branchModel.branchAddress.City + ", \n" + customer.AccountDetails.branchModel.branchAddress.PinCode + ", " + customer.AccountDetails.branchModel.branchAddress.Country);
+            Console.WriteLine("Branch Name: " + customer.AccountDetails.BranchModel.BranchName);
+            Console.WriteLine("IFSC code: " + customer.AccountDetails.BranchModel.IFSCCode);
+            Console.WriteLine("Branch Address: " + customer.AccountDetails.BranchModel.branchAddress.LocationAddress + ", " + customer.AccountDetails.BranchModel.branchAddress.City + ", \n" + customer.AccountDetails.BranchModel.branchAddress.PinCode + ", " + customer.AccountDetails.BranchModel.branchAddress.Country);
             Console.ForegroundColor= ConsoleColor.White;
         }
         public static bool CustomerValidate(long accountNumber, string password)
