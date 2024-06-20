@@ -8,7 +8,7 @@
             get { return _bankName; }
         }
 
-        private AddressModel Address = new AddressModel("abc", 12345, "manglore", "Denmark");
+        private AddressModel Address = new AddressModel("WrkWrk", 453217, "Horsens", "Denmark");
 
 const int BankCode = 566152;
 

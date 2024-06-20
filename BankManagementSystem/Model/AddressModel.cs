@@ -15,7 +15,7 @@ namespace BankManagementSystem.Model
             set
             {
                 string pinCodeString = value.ToString();
-                if (pinCodeString.Length < 6 || pinCodeString.Length > 6)
+                if (pinCodeString.Length != 6)
                 {
                     throw new Exception("Invalid pincode!!");
                 }

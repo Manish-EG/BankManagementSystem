@@ -16,7 +16,7 @@ namespace BankManagementSystem
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write(BankModel.BankName);
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write($"---------------");
+            Console.Write($"---------------\n");
         }
         static void DisplayOptions()
         {
@@ -168,11 +168,11 @@ namespace BankManagementSystem
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("Enter your account number");
+                            Console.Write("Enter your account number: ");
                             accountNumber = Convert.ToInt64(Console.ReadLine());
-                            Console.WriteLine("Enter the password");
+                            Console.Write("Enter the password: ");
                             password = Console.ReadLine();
-                            Console.WriteLine("Enter the amount to withdraw");
+                            Console.Write("Enter the amount to withdraw: ");
                             amount = Convert.ToDouble(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.White;
                             if (CustomerController.CustomerValidate(accountNumber, password))
@@ -232,7 +232,7 @@ namespace BankManagementSystem
                             password = Console.ReadLine();
                             Console.WriteLine("Enter your recipient's account number:");
                             recipientAccountNumber = Convert.ToInt64(Console.ReadLine());
-                            Console.WriteLine("Enter your recipient's account number:");
+                            Console.WriteLine("Enter your recipient's IFSC code:");
                             IFSCCode = Console.ReadLine();
                             Console.ForegroundColor = ConsoleColor.White;
                             accountControllerObj.MoneyTransfer(accountNumber, recipientAccountNumber, password, IFSCCode);
@@ -313,7 +313,13 @@ namespace BankManagementSystem
                             Console.WriteLine($"Execption found: {e.Message}");
                         }
                         break;
-
+                        case 9:return;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid choice");
+                        Console.Beep(1000,500);
+                        
+                        break;
                 }
 
             } while (choice != 9);

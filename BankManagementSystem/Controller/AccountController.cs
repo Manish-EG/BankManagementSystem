@@ -1,7 +1,6 @@
 ﻿using BankManagementSystem.Interface;
 using BankManagementSystem.Model;
 using System;
-using System.Reflection;
 namespace BankManagementSystem.Controller
 {
     public sealed class AccountController : IAccount
@@ -35,14 +34,24 @@ namespace BankManagementSystem.Controller
             {
 
                 CustomerModel customerObject = (CustomerModel)Program.CustomerTable[accountNumber];
-                if (amount > customerObject.AccountDetails.Balance )
+                if (amount > customerObject.AccountDetails.Balance)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Please enter the amount less than  the balance amount {customerObject.AccountDetails.Balance}");
-                else if(amount<=0)
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if (amount <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid entry");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
                 else
                 {
                     customerObject.AccountDetails.Balance -= amount;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Withdraw Succesfull");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                
 
@@ -68,7 +77,7 @@ namespace BankManagementSystem.Controller
             CustomerModel senderCustomer, recipientCustomer;
             senderCustomer = (CustomerModel)Program.CustomerTable[senderAccountNumber];
             recipientCustomer = (CustomerModel)Program.CustomerTable[recipientAccountNumber];
-            if (CustomerController.CustomerValidate(senderAccountNumber, password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.branchModel.IFSCCode == IFSCCode)
+            if (CustomerController.CustomerValidate(senderAccountNumber, password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.BranchModel.IFSCCode == IFSCCode)
             {
                 
                 double amount;
@@ -77,8 +86,8 @@ namespace BankManagementSystem.Controller
                 amount=Convert.ToDouble(Console.ReadLine());
                 if (senderCustomer.AccountDetails.Balance > amount )
                 {
-                    Deposit(recipientAccountNumber, amount);
                     Withdraw(senderAccountNumber, password, amount);
+                    Deposit(recipientAccountNumber, amount);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Amount Transfered to recipients account successfully!");
                     Console.ForegroundColor = ConsoleColor.White;
