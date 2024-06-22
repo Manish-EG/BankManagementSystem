@@ -44,9 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AccountController.cs" />
+    <Compile Include="Controller\ATMCard.cs" />
     <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Controller\DisplayCustomerDetails.cs" />
+    <Compile Include="Controller\Validation.cs" />
     <Compile Include="Interface\IAccount.cs" />
     <Compile Include="Interface\ICustomer.cs" />
+    <Compile Include="Interface\IDisplayCustomerDetails.cs" />
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\AddressModel.cs" />
     <Compile Include="Model\BankModel.cs" />

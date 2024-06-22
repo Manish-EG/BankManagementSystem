@@ -30,7 +30,7 @@ namespace BankManagementSystem.Controller
 
         public void Withdraw(long accountNumber, string password, double amount)
         {
-            if (CustomerController.CustomerValidate(accountNumber, password))
+            if (Validation.ValidateAccount(accountNumber, password))
             {
 
                 CustomerModel customerObject = (CustomerModel)Program.CustomerTable[accountNumber];
@@ -53,7 +53,7 @@ namespace BankManagementSystem.Controller
                     Console.WriteLine("Withdraw Succesfull");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-               
+
 
             }
             else
@@ -77,14 +77,14 @@ namespace BankManagementSystem.Controller
             CustomerModel senderCustomer, recipientCustomer;
             senderCustomer = (CustomerModel)Program.CustomerTable[senderAccountNumber];
             recipientCustomer = (CustomerModel)Program.CustomerTable[recipientAccountNumber];
-            if (CustomerController.CustomerValidate(senderAccountNumber, password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.BranchModel.IFSCCode == IFSCCode)
+            if (Validation.ValidateAccount(senderAccountNumber, password) && Program.CustomerTable.ContainsKey(recipientAccountNumber) && recipientCustomer.AccountDetails.BranchModel.IFSCCode == IFSCCode)
             {
-                
+
                 double amount;
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Enter the ammount");
-                amount=Convert.ToDouble(Console.ReadLine());
-                if (senderCustomer.AccountDetails.Balance > amount )
+                amount = Convert.ToDouble(Console.ReadLine());
+                if (senderCustomer.AccountDetails.Balance > amount)
                 {
                     Withdraw(senderAccountNumber, password, amount);
                     Deposit(recipientAccountNumber, amount);
@@ -106,43 +106,9 @@ namespace BankManagementSystem.Controller
                 Console.WriteLine(" Account not found!! Please check the Account number/Password you've typed.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-
         }
-
-        public void ApplyAtmCard(long accountNumber, string password)
-        {
-            if (CustomerController.CustomerValidate(accountNumber, password))
-            {
-
-            int choice;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Enter your choice\n1.Debit Card\n2.Credit Card");
-            Console.ForegroundColor = ConsoleColor.White;
-            choice =Convert.ToInt32(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                    case 2:
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("You will get your Credit/Debit card within 15 buisness days,Thank you.");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid choice!!");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        break;
-                }
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid credential");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            return;
-        }
-
-
     }
-}
+
+}  
+    
+    

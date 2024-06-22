@@ -7,6 +7,5 @@ namespace BankManagementSystem.Interface
         void Withdraw(long accountNumber, string password, double amount);
         void CheckBalance(long accountNumber,string password);
         void MoneyTransfer(long senderAccountNumber, long recipientAccountNumber, string password, string IFSCCode);
-        void ApplyAtmCard(long accountNumber, string password);
     }
 }

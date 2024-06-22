@@ -35,7 +35,7 @@ namespace BankManagementSystem.Model
             set
             {
                 CustomerController customerControllerObject = new CustomerController();
-                if(customerControllerObject.IsValidEmail(value))
+                if(Validation.ValidateEmail(value))
                 {
                     _email = value;
                 }

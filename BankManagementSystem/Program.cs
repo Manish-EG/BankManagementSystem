@@ -1,5 +1,6 @@
 ﻿using BankManagementSystem.Controller;
 using BankManagementSystem.Model;
+using BankManagementSystem.Interface;
 using System;
 using System.Collections;
 
@@ -40,9 +41,9 @@ namespace BankManagementSystem
             do
             {
                 DisplayOptions();
-                AccountController accountControllerObj = new AccountController();
+                IAccount accountControllerObj = new AccountController();
                 CustomerModel customerObject = new CustomerModel();
-                CustomerController customerControllerObj = new CustomerController();
+                ICustomer customerControllerObj = new CustomerController();
                 long accountNumber, recipientAccountNumber;
                 string password, IFSCCode;
                 double amount;
@@ -152,6 +153,9 @@ namespace BankManagementSystem
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("Enter the account number: ");
                             accountNumber = Convert.ToInt64(Console.ReadLine());
+                            if (!Program.CustomerTable.ContainsKey(accountNumber)) {
+                                throw new Exception("Account number does not exists");
+                            }
                             Console.Write("Enter the amount to deposit: ");
                             amount = Convert.ToDouble(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.White;
@@ -174,7 +178,7 @@ namespace BankManagementSystem
                             Console.Write("Enter the amount to withdraw: ");
                             amount = Convert.ToDouble(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.White;
-                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            if (Validation.ValidateAccount(accountNumber, password))
                             {
                                 accountControllerObj.Withdraw(accountNumber, password, amount);
                             }
@@ -202,7 +206,7 @@ namespace BankManagementSystem
                             Console.Write("Enter your password: ");
                             password = Console.ReadLine();
                             Console.ForegroundColor = ConsoleColor.White;
-                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            if (Validation.ValidateAccount(accountNumber, password))
                             {
                                 accountControllerObj.CheckBalance(accountNumber, password);
 
@@ -245,15 +249,17 @@ namespace BankManagementSystem
                     case 6:
                         try
                         {
+
+                            IDisplayCustomerDetails displayCustomerDetailsObj = new DisplayCustomerDetails();
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Enter your account number:");
                             accountNumber = Convert.ToInt64(Console.ReadLine());
                             Console.WriteLine("Enter your password:");
                             Console.ForegroundColor = ConsoleColor.White;
                             password = Console.ReadLine();
-                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            if (Validation.ValidateAccount(accountNumber, password))
                             {
-                                customerControllerObj.ViewDetails(accountNumber);
+                                displayCustomerDetailsObj.ViewDetails(accountNumber);
                             }
                             else
                             {
@@ -277,10 +283,10 @@ namespace BankManagementSystem
                             Console.WriteLine("Enter your password:");
                             password = Console.ReadLine();
                             Console.ForegroundColor = ConsoleColor.White;
-                            if (CustomerController.CustomerValidate(accountNumber, password))
+                            if (Validation.ValidateAccount(accountNumber, password))
                             {
                                 CustomerController customerController = new CustomerController();
-                                customerController.EditDetails(accountNumber);
+                                customerController.EditAccount(accountNumber);
                             }
                             else
                             {
@@ -304,7 +310,8 @@ namespace BankManagementSystem
                             Console.WriteLine("Enter the password");
                             password = Console.ReadLine();
                             Console.ForegroundColor = ConsoleColor.White;
-                            accountControllerObj.ApplyAtmCard(accountNumber, password);
+                            ATMCard atmCardObj = new ATMCard();
+                            atmCardObj.ApplyAtmCard(accountNumber, password);
                         }
                         catch (Exception e)
                         {
